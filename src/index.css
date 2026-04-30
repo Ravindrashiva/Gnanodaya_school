@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0A2540;
+  --color-secondary: #003366;
+  --color-accent: #3A86FF;
+  --color-highlight: #06D6A0;
+  --color-surface: #F8F9FA;
+  --color-text: #1A1A1A;
+  --color-muted: #64748B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+body::selection {
+  background: rgba(58, 134, 255, 0.18);
+  color: #ffffff;
+}
+
+@layer utilities {
+  .bg-custom-primary { background-color: var(--color-primary); }
+  .bg-custom-secondary { background-color: var(--color-secondary); }
+  .bg-custom-accent { background-color: var(--color-accent); }
+  .text-custom-primary { color: var(--color-primary); }
+  .text-custom-secondary { color: var(--color-secondary); }
+  .text-custom-accent { color: var(--color-accent); }
+  .border-custom-primary { border-color: var(--color-primary); }
+  .hover\:bg-custom-secondary:hover { background-color: var(--color-secondary); }
+  .hover\:text-custom-secondary:hover { color: var(--color-secondary); }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+a {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
