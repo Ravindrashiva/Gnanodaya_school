@@ -1,63 +1,115 @@
 @import "tailwindcss";
 
-:root {
-  --color-primary: #0A2540;
-  --color-secondary: #003366;
-  --color-accent: #3A86FF;
-  --color-highlight: #06D6A0;
-  --color-surface: #F8F9FA;
-  --color-text: #1A1A1A;
-  --color-muted: #64748B;
+/* =========================
+   THEME COLORS
+========================= */
+@theme {
+  --color-primary: #0f7a3d;
+  --color-secondary: #f4b400;
+  --color-accent: #e91e63;
+  --color-dark: #0a2a1b;
+  --color-light: #f9fafb;
 }
 
-html {
-  scroll-behavior: smooth;
+/* =========================
+   BASE FIXES (IMPORTANT)
+========================= */
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply bg-white text-[var(--color-dark)] font-sans;
+  }
+
+  /* ✅ BIGGEST FIX: SPACING */
+  section {
+    @apply py-16;
+  }
+
+  /* Headings clean */
+  h1, h2, h3 {
+    @apply text-primary font-bold;
+  }
+
+  h2 {
+    @apply text-3xl text-center mb-10;
+  }
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--color-surface);
-  color: var(--color-text);
+/* =========================
+   LAYOUT HELPERS
+========================= */
+@layer components {
+
+  /* Container alignment */
+  .container {
+    @apply max-w-6xl mx-auto px-5;
+  }
+
+  /* Clean grid spacing */
+  .grid-clean {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7;
+  }
+
+  /* Alternate section background */
+  .section-light {
+    @apply bg-light;
+  }
+
+  /* =========================
+     CARD FIX (NO REDESIGN)
+  ========================= */
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-sm transition duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-md -translate-y-1;
+  }
+
+  /* =========================
+     BUTTONS
+  ========================= */
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md transition;
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-dark px-6 py-3 rounded-lg font-semibold shadow-md transition;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-secondary/90;
+  }
+
+  /* =========================
+     TICKER FIX (LESS NOISE)
+  ========================= */
+  .ticker {
+    @apply text-sm py-1 bg-secondary text-dark;
+  }
 }
 
-body::selection {
-  background: rgba(58, 134, 255, 0.18);
-  color: #ffffff;
+/* =========================
+   ANIMATION FIX
+========================= */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@layer utilities {
-  .bg-custom-primary { background-color: var(--color-primary); }
-  .bg-custom-secondary { background-color: var(--color-secondary); }
-  .bg-custom-accent { background-color: var(--color-accent); }
-  .text-custom-primary { color: var(--color-primary); }
-  .text-custom-secondary { color: var(--color-secondary); }
-  .text-custom-accent { color: var(--color-accent); }
-  .border-custom-primary { border-color: var(--color-primary); }
-  .hover\:bg-custom-secondary:hover { background-color: var(--color-secondary); }
-  .hover\:text-custom-secondary:hover { color: var(--color-secondary); }
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee 18s linear infinite; /* slower = cleaner */
 }
 
-* {
-  box-sizing: border-box;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: inherit;
-}
-
-button,
-input,
-textarea,
-a {
-  font: inherit;
-}
-
-#root {
-  min-height: 100vh;
+.animate-marquee-fast:hover {
+  animation-play-state: paused;
 }

@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 function Gallery() {
   const galleryCategories = [
     {
       title: 'Campus',
-      description: 'Beautiful campus facilities and infrastructure',
+      description: 'Beautiful campus facilities and infrastructure in Madanapalle',
       images: [
         'https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&w=400&q=80',
         'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=400&q=80',
@@ -14,7 +14,7 @@ function Gallery() {
     },
     {
       title: 'Activities',
-      description: 'Students engaged in various learning activities',
+      description: 'Students engaged in interactive learning and discovery',
       images: [
         'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=400&q=80',
         'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80',
@@ -24,7 +24,7 @@ function Gallery() {
     },
     {
       title: 'Annual Day',
-      description: 'Celebrating achievements and talents',
+      description: 'Celebrating cultural heritage and student achievements',
       images: [
         'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&q=80',
         'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80',
@@ -32,174 +32,169 @@ function Gallery() {
         'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80'
       ]
     }
-  ]
+  ];
+
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" } 
+    }
+  };
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-accent text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#fafaf9]">
+      
+      {/* Hero Section - Forest Green & Gold */}
+      <section className="bg-[#064E3B] text-white py-24 border-b-8 border-[#D4AF37] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">School Gallery</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Explore life at Gynodaya School - Best school in Madanapalle
+            <span className="inline-block px-4 py-1 rounded-full bg-[#D4AF37] text-[#064E3B] mb-6 text-xs font-black uppercase tracking-widest shadow-lg">
+              Visual Journey
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tighter">
+              School <span className="text-[#D4AF37]">Gallery</span>
+            </h1>
+            <p className="text-xl text-emerald-100/70 max-w-2xl mx-auto font-light">
+              Explore the vibrant life and world-class facilities at Gyanodaya High School.
             </p>
           </motion.div>
         </div>
+        {/* Subtle Decorative Element */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37] opacity-5 rounded-full -mr-32 -mt-32" />
       </section>
 
       {/* Gallery Categories */}
       {galleryCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className={`py-16 ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section key={categoryIndex} className={`py-20 ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-[#f3f4f1]'}`}>
+          <div className="max-w-7xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="mb-12 border-l-8 border-[#D4AF37] pl-6"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              <h2 className="text-4xl font-black text-[#064E3B] uppercase tracking-tighter">
                 {category.title}
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-slate-500 italic mt-2">
                 {category.description}
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {category.images.map((image, imageIndex) => (
                 <motion.div
                   key={imageIndex}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: imageIndex * 0.1 }}
-                  className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  variants={itemVariants}
+                  className="group relative overflow-hidden rounded-xl shadow-xl aspect-square border-2 border-transparent hover:border-[#D4AF37] transition-all duration-500"
                 >
                   <img
                     src={image}
                     alt={`${category.title} ${imageIndex + 1}`}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                      </svg>
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#064E3B]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <p className="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">View Full Image</p>
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       ))}
 
-      {/* Virtual Tour CTA */}
-      <section className="py-16 bg-gradient-to-r from-secondary to-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Experience CTA */}
+      <section className="py-20 bg-[#064E3B] text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="border-4 border-[#D4AF37] p-12 rounded-[40px]"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Experience Our Campus
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Schedule a campus visit to see our facilities in person
+            <h2 className="text-4xl font-bold mb-6 uppercase tracking-tight">Experience Our Campus</h2>
+            <p className="text-emerald-100/70 text-xl mb-10 font-light">
+              Pictures tell a story, but a visit creates a memory. 
+              Schedule your personalized campus tour today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <motion.a
+                whileHover={{ y: -5 }}
                 href="tel:+919876543210"
-                className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
+                className="bg-white text-[#064E3B] px-8 py-4 rounded-xl font-black shadow-lg uppercase tracking-widest"
               >
                 📞 Schedule Visit
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={{ y: -5 }}
                 href="#admissions"
-                className="inline-block bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg"
+                className="bg-[#D4AF37] text-[#064E3B] px-8 py-4 rounded-xl font-black shadow-lg uppercase tracking-widest"
               >
                 🎓 Apply Now
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Facilities Preview */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              World-Class Facilities
-            </h2>
-            <p className="text-lg text-gray-600">
-              Modern infrastructure for comprehensive learning
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <div className="text-6xl mb-4">🏫</div>
-              <h3 className="text-xl font-semibold text-primary mb-2">Smart Classrooms</h3>
-              <p className="text-gray-600">Interactive learning with modern technology</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center"
-            >
-              <div className="text-6xl mb-4">⚽</div>
-              <h3 className="text-xl font-semibold text-primary mb-2">Sports Facilities</h3>
-              <p className="text-gray-600">Comprehensive playground and sports equipment</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="text-6xl mb-4">🎨</div>
-              <h3 className="text-xl font-semibold text-primary mb-2">Arts & Culture</h3>
-              <p className="text-gray-600">Creative spaces for artistic expression</p>
-            </motion.div>
+      {/* Facilities Grid */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { icon: '🏫', title: 'Smart Classrooms', desc: 'Tech-enabled learning environments' },
+              { icon: '⚽', title: 'Sports Arenas', desc: 'Professional coaching and facilities' },
+              { icon: '🎨', title: 'Creative Hubs', desc: 'Dedicated spaces for art & music' }
+            ].map((facility, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                viewport={{ once: true }}
+                className="text-center p-8 rounded-3xl bg-[#fafaf9] border-b-4 border-transparent hover:border-[#D4AF37] transition-all"
+              >
+                <div className="text-6xl mb-6">{facility.icon}</div>
+                <h3 className="text-2xl font-black text-[#064E3B] mb-3 uppercase tracking-tighter">{facility.title}</h3>
+                <p className="text-slate-500 font-medium">{facility.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SEO Text */}
-      <section className="py-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-gray-600">
-            <p className="text-sm">
-              Best school in Madanapalle gallery • State board school Madanapalle photos •
-              School campus images • Student activities • Annual day celebrations •
-              School facilities • Classroom photos • Sports activities •
-              School events Madanapalle • Quality education infrastructure
-            </p>
-          </div>
+      {/* SEO Footer */}
+      <footer className="py-10 bg-[#064E3B]/5 border-t border-emerald-100">
+        <div className="max-w-7xl mx-auto px-6 text-center text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">
+          Best School in Madanapalle • Premier Education • State-of-the-Art Campus
         </div>
-      </section>
+      </footer>
     </main>
-  )
+  );
 }
 
-export default Gallery
+export default Gallery;

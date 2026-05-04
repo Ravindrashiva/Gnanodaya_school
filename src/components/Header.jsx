@@ -1,140 +1,142 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, GraduationCap, ChevronRight } from 'lucide-react'
-import { school } from '../data/siteContent'
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Megaphone } from "lucide-react";
 
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Academics', href: '/academics' },
-  { label: 'Admissions', href: '/admissions' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Learning Hub', href: '/learning-hub' },
-  { label: 'Contact', href: '/contact' },
-]
+// Importing your logo asset
+import logo from "../assets/logo.png"; 
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const tickerItems = [
+    "ADMISSION 2026-27 — LKG TO CLASS 10 NOW OPEN",
+    "SSC BOARD EXAM ORIENTATION FOR CLASS 10 PARENTS",
+    "NEW STEM LAB FACILITIES NOW OPEN",
+  ];
+
+  // "Facilities" has been removed from this array
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Academics", href: "/academics" },
+    { name: "Admissions", href: "/admissions" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Contact", href: "/contact" },
+    { name: "ERP Login", href: "/login" },
+  ];
 
   return (
-    <header className="sticky top-0 z-[100] w-full border-b border-white/20 bg-white/80 shadow-glass backdrop-blur-xl transition-all duration-300">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          
-          {/* Logo Section */}
-          <Link to="/" className="group flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-dark text-brand-gold shadow-lg transition-all duration-500 group-hover:rotate-[10deg] group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-white">
-              <GraduationCap size={28} strokeWidth={2.5} />
-            </div>
-            <div className="hidden sm:block">
-              <p className="text-lg font-black uppercase tracking-tighter text-brand-dark leading-none">
-                {school.name}
-              </p>
-              <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-blue">
-                {school.location} · {school.board}
-              </p>
-            </div>
-          </Link>
+    <div className="relative w-full h-[115px] lg:h-[130px]"> 
+      <header className="fixed top-0 w-full z-[100] transition-all duration-300">
+        
+        {/* 1. MAIN NAVIGATION */}
+        <nav className={`bg-white transition-all duration-300 px-6 lg:px-12 ${isScrolled ? 'py-2 shadow-md' : 'py-4 shadow-sm'}`}>
+          <div className="max-w-[1600px] mx-auto flex justify-between items-center">
+            
+            {/* LOGO & BRANDING AREA */}
+            <a href="/" className="flex items-center gap-4 group">
+              <div className="relative w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center bg-white rounded-full p-0.5 shadow-sm border border-slate-200 overflow-hidden">
+                 <img 
+                   src={logo.src || logo} 
+                   alt="Gnanodhaya Logo" 
+                   className="w-full h-full object-contain p-1" 
+                 />
+              </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center gap-1">
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.href
-                return (
-                  <li key={item.href}>
-                    <Link
-                      to={item.href}
-                      className={`relative px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors duration-300 rounded-xl
-                        ${isActive ? 'text-brand-blue' : 'text-muted hover:text-brand-dark hover:bg-slate-100/50'}`}
-                    >
-                      {item.label}
-                      {isActive && (
-                        <motion.div
-                          layoutId="nav-underline"
-                          className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-blue rounded-full"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                    </Link>
+              <div className="flex flex-col">
+                <h1 className="text-[#0A4D2E] font-[900] text-xl lg:text-[22px] leading-tight uppercase tracking-tight">
+                  Gnanodaya
+                </h1>
+                <span className="text-slate-500 text-[11px] lg:text-[12px] font-bold leading-tight uppercase tracking-[0.1em]">
+                English Medium High School
+                </span>
+              </div>
+            </a>
+
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-10">
+              <ul className="flex items-center gap-8 text-[13px] font-bold text-[#334155]">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <a href={link.href} className="hover:text-[#0A4D2E] transition-colors whitespace-nowrap">
+                      {link.name}
+                    </a>
                   </li>
-                )
-              })}
-            </ul>
-          </nav>
+                ))}
+              </ul>
+            </div>
 
-          {/* Admission CTA */}
-          <div className="hidden lg:block">
-            <Link
-              to="/admissions"
-              className="group relative flex items-center gap-2 overflow-hidden bg-brand-dark px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all hover:bg-brand-blue hover:shadow-brand-blue/30 active:scale-95"
-            >
-              <span className="relative z-10">Enroll Now</span>
-              <ChevronRight size={16} className="relative z-10 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-500 group-hover:translate-x-full" />
-            </Link>
+            {/* Mobile Menu Toggle */}
+            <button className="lg:hidden text-[#0A4D2E]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </nav>
+
+        {/* 2. ACCENT BAR */}
+        <div className="h-1 w-full bg-[#FFC107]"></div>
+
+        {/* 3. NEWS TICKER */}
+        <div className="bg-slate-50 flex items-center h-10 border-b border-slate-200">
+          <div className="bg-[#0A4D2E] text-[#FFC107] px-6 h-full flex items-center gap-2">
+             <Megaphone size={14} />
+             <span className="font-black text-[10px] uppercase whitespace-nowrap tracking-wider">
+               Latest News:
+             </span>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-brand-dark transition-all hover:bg-brand-dark hover:text-white lg:hidden"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-20 bg-brand-dark/20 backdrop-blur-sm lg:hidden"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute inset-x-4 top-[5.5rem] overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl lg:hidden"
+          <div className="flex-1 overflow-hidden relative bg-white h-full flex items-center">
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+              className="flex whitespace-nowrap gap-24 text-[12px] font-semibold text-[#0A4D2E]"
             >
-              <nav className="flex flex-col gap-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-5 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider transition-all
-                      ${location.pathname === item.href 
-                        ? 'bg-brand-blue/10 text-brand-blue' 
-                        : 'text-slate-600 hover:bg-slate-50'}`}
-                  >
-                    {item.label}
-                    <ChevronRight size={14} className={location.pathname === item.href ? 'opacity-100' : 'opacity-0'} />
-                  </Link>
-                ))}
-                <Link
-                  to="/admissions"
-                  onClick={() => setIsOpen(false)}
-                  className="mt-4 block w-full bg-brand-dark py-5 text-center text-xs font-black uppercase tracking-[0.2em] text-white rounded-2xl shadow-lg"
-                >
-                  Admission Form
-                </Link>
-              </nav>
+              {[...tickerItems, ...tickerItems].map((item, i) => (
+                <span key={i} className="flex items-center gap-4 uppercase tracking-tight">
+                   {item} <span className="text-[#FFC107] font-black">|</span>
+                </span>
+              ))}
             </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
 
-      {/* Royal Progress/Accent Bar */}
-      <div className="h-0.5 w-full bg-gradient-to-r from-brand-gold/50 via-brand-blue to-brand-dark/50 opacity-40" />
-    </header>
-  )
+        {/* Mobile Sidebar */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              className="fixed inset-0 bg-[#0A4D2E] z-[110] flex flex-col p-10 lg:hidden"
+            >
+              <div className="flex justify-between items-center mb-12">
+                <span className="text-white font-black text-2xl uppercase italic">Menu</span>
+                <button onClick={() => setIsMobileMenuOpen(false)} className="text-white"><X size={32}/></button>
+              </div>
+              <div className="flex flex-col gap-6 overflow-y-auto">
+                {navLinks.map((link) => (
+                  <a 
+                    key={link.name} 
+                    href={link.href} 
+                    className="text-white/80 text-3xl font-black uppercase hover:text-[#FFC107] transition-colors" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </div>
+  ); 
 }

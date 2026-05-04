@@ -1,227 +1,156 @@
-import { motion } from 'framer-motion'
-import { school } from '../data/siteContent.js'
+import { motion } from 'framer-motion';
+import { school } from '../data/siteContent.js';
 
 function Contact() {
+  // Container logic for staggered "one-by-one" reveal
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2, 
+        delayChildren: 0.1 
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: "easeOut" } 
+    }
+  };
+
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-secondary to-accent text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#fafaf9]">
+      {/* 1. HERO SECTION */}
+      <section className="bg-[#064E3B] text-white py-24 border-b-8 border-[#D4AF37] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Get in touch with the best school in Madanapalle
+            <span className="inline-block px-4 py-1 rounded-full bg-[#D4AF37] text-[#064E3B] mb-6 text-xs font-black uppercase tracking-widest">
+              Connect With Us
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tighter uppercase">
+              Contact <span className="text-[#D4AF37]">Us</span>
+            </h1>
+            <p className="text-xl text-emerald-100/70 max-w-2xl mx-auto font-light leading-relaxed">
+              Have questions about admissions or campus life? Our administration is here to help you every step of the way.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Details */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 2. CONTACT CARDS */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-lg text-gray-600">
-              We're here to answer your questions about admissions and school life
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center bg-gray-50 rounded-lg p-8"
-            >
-              <div className="text-4xl mb-4">📍</div>
-              <h3 className="text-xl font-semibold text-primary mb-3">Address</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {school.contact.address}
-              </p>
+            {/* Address */}
+            <motion.div variants={itemVariants} className="group p-10 bg-[#fafaf9] rounded-3xl border-b-4 border-transparent hover:border-[#D4AF37] transition-all duration-300 shadow-sm">
+              <div className="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">📍</div>
+              <h3 className="text-2xl font-black text-[#064E3B] mb-4 uppercase tracking-tighter">Campus Address</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">{school.contact.address}</p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center bg-gray-50 rounded-lg p-8"
-            >
-              <div className="text-4xl mb-4">📞</div>
-              <h3 className="text-xl font-semibold text-primary mb-3">Phone</h3>
-              <a
-                href={`tel:${school.contact.phone}`}
-                className="text-2xl font-bold text-secondary hover:text-primary transition-colors duration-300"
-              >
+            {/* Phone */}
+            <motion.div variants={itemVariants} className="group p-10 bg-[#fafaf9] rounded-3xl border-b-4 border-transparent hover:border-[#D4AF37] transition-all duration-300 shadow-sm text-center md:text-left">
+              <div className="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">📞</div>
+              <h3 className="text-2xl font-black text-[#064E3B] mb-4 uppercase tracking-tighter">Phone</h3>
+              <a href={`tel:${school.contact.phone}`} className="text-xl font-bold text-[#D4AF37] hover:text-[#064E3B] block mb-2 transition-colors">
                 {school.contact.phone}
               </a>
-              <p className="text-gray-600 mt-2">Mon - Sat: 9:00 AM - 5:00 PM</p>
+              <p className="text-slate-500 text-sm font-bold uppercase tracking-wider">Office: 9 AM - 5 PM</p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center bg-gray-50 rounded-lg p-8"
-            >
-              <div className="text-4xl mb-4">✉️</div>
-              <h3 className="text-xl font-semibold text-primary mb-3">Email</h3>
-              <a
-                href={`mailto:${school.contact.email}`}
-                className="text-lg text-secondary hover:text-primary transition-colors duration-300"
-              >
+            {/* Email */}
+            <motion.div variants={itemVariants} className="group p-10 bg-[#fafaf9] rounded-3xl border-b-4 border-transparent hover:border-[#D4AF37] transition-all duration-300 shadow-sm">
+              <div className="text-5xl mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">✉️</div>
+              <h3 className="text-2xl font-black text-[#064E3B] mb-4 uppercase tracking-tighter">Email</h3>
+              <a href={`mailto:${school.contact.email}`} className="text-lg font-bold text-[#D4AF37] hover:text-[#064E3B] break-all transition-colors">
                 {school.contact.email}
               </a>
-              <p className="text-gray-600 mt-2">We'll respond within 24 hours</p>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Find Us on Map
-            </h2>
-            <p className="text-lg text-gray-600">
-              Located in the heart of Madanapalle for easy access
-            </p>
-          </motion.div>
-
+      {/* 3. MAP SECTION */}
+      <section className="py-20 bg-[#f3f4f1]">
+        <div className="max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white"
           >
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5!2d78.5!3d13.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDMwJzAwLjAiTiA3OMKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Gynodaya School Location"
-              ></iframe>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5!2d78.5!3d13.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDMwJzAwLjAiTiA3OMKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              title="Campus Location"
+            ></iframe>
           </motion.div>
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 4. QUICK ACTIONS */}
+      <section className="py-20 bg-[#064E3B]">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
             className="text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Join Our Family?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Take the next step towards your child's bright future
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://wa.me/919876543210?text=Hi%20I%20want%20to%20know%20about%20admissions%20at%20Gynodaya%20School"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-green-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition-colors duration-300 shadow-lg"
+            <motion.h2 variants={itemVariants} className="text-4xl font-bold text-white mb-10 uppercase tracking-tight">Direct Support</motion.h2>
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/919876543210"
+                className="bg-[#25D366] text-white px-10 py-5 rounded-2xl font-black shadow-xl flex items-center justify-center uppercase tracking-widest"
               >
-                <span className="mr-2">💬</span>
-                WhatsApp Us
-              </a>
-              <a
-                href="tel:+919876543210"
-                className="inline-flex items-center bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg"
+                <span className="mr-3">💬</span> WhatsApp Support
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={`tel:${school.contact.phone}`}
+                className="bg-[#D4AF37] text-[#064E3B] px-10 py-5 rounded-2xl font-black shadow-xl flex items-center justify-center uppercase tracking-widest"
               >
-                <span className="mr-2">📞</span>
-                Call Now
-              </a>
-              <a
-                href="#admissions"
-                className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
-              >
-                Apply Online
-              </a>
-            </div>
+                <span className="mr-3">📞</span> Direct Call
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Office Hours */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8">
-              Office Hours
-            </h2>
-            <div className="bg-gray-50 rounded-lg p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-primary mb-3">School Office</h3>
-                  <div className="space-y-2 text-gray-600">
-                    <p><strong>Monday - Saturday:</strong> 9:00 AM - 5:00 PM</p>
-                    <p><strong>Sunday:</strong> Closed</p>
-                    <p><strong>Lunch Break:</strong> 1:00 PM - 2:00 PM</p>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-primary mb-3">Academic Year</h3>
-                  <div className="space-y-2 text-gray-600">
-                    <p><strong>School Hours:</strong> 8:30 AM - 3:30 PM</p>
-                    <p><strong>Admission Queries:</strong> All working days</p>
-                    <p><strong>Emergency:</strong> 24/7 available</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+      {/* 5. SEO FOOTER */}
+      <footer className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] leading-loose">
+            Best school in Madanapalle • Gyanodaya High School Admissions • State Board School AP • Quality Education Madanapalle • Campus Visit • Contact School Administration
+          </p>
         </div>
-      </section>
-
-      {/* SEO Text */}
-      <section className="py-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-gray-600">
-            <p className="text-sm">
-              Best school in Madanapalle contact • State board school Madanapalle address •
-              School phone number • School email • School location Madanapalle •
-              Andhra Pradesh school contact • Gynodaya School contact details •
-              School admission contact • School office hours • School map location
-            </p>
-          </div>
-        </div>
-      </section>
+      </footer>
     </main>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

@@ -1,5 +1,5 @@
 export const school = {
-  name: 'Gynodaya School',
+  name: 'Gnanodhya School',
   location: 'Madanapalle',
   board: 'Andhra Pradesh State Board',
   classes: 'LKG to 10th Class',

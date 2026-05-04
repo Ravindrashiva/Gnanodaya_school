@@ -1,265 +1,206 @@
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
+/**
+ * Admissions Component for Gyanodaya High School
+ * Theme: Forest Green & Polished Gold
+ * Animation: Sequential "One-by-One" scroll reveals
+ */
 function Admissions() {
   const eligibility = [
-    {
-      class: 'LKG',
-      age: '3.5 - 4.5 years',
-      requirements: 'Basic communication skills, toilet trained'
-    },
-    {
-      class: 'UKG',
-      age: '4.5 - 5.5 years',
-      requirements: 'Basic literacy and numeracy skills'
-    },
-    {
-      class: 'Grade 1',
-      age: '5.5 - 6.5 years',
-      requirements: 'Basic reading and writing skills'
-    },
-    {
-      class: 'Grades 2-5',
-      age: 'Age appropriate for grade',
-      requirements: 'Previous grade completion certificate'
-    },
-    {
-      class: 'Grades 6-10',
-      age: 'Age appropriate for grade',
-      requirements: 'Transfer certificate from previous school'
-    }
-  ]
+    { class: 'LKG', age: '3.5 - 4.5 Years', focus: 'Social Integration & Play' },
+    { class: 'UKG', age: '4.5 - 5.5 Years', focus: 'Literacy & Numeracy Foundations' },
+    { class: 'Grade 1', age: '5.5 - 6.5 Years', focus: 'Cognitive & Creative Development' },
+    { class: 'Grades 2-5', age: 'Age Appropriate', focus: 'Academic Discipline' },
+    { class: 'Grades 6-10', age: 'Age Appropriate', focus: 'Leadership & Specialization' }
+  ];
 
   const documents = [
-    'Birth Certificate',
-    'Previous School Transfer Certificate',
-    'Report Card/Progress Report',
-    'Medical Certificate',
-    'Address Proof',
-    'Parent ID Proof',
-    'Passport Size Photos (4 copies)',
-    'Aadhaar Card (Student & Parents)'
-  ]
+    'Original Birth Certificate',
+    'Transfer Certificate (TC)',
+    'Aadhaar Card (Student & Parents)',
+    'Last Progress Report',
+    'Passport Size Photos (4)',
+    'Medical Fitness Certificate'
+  ];
 
   const steps = [
-    {
-      step: 1,
-      title: 'Online Application',
-      description: 'Fill out the admission form online or visit our school office'
-    },
-    {
-      step: 2,
-      title: 'Document Verification',
-      description: 'Submit required documents for verification'
-    },
-    {
-      step: 3,
-      title: 'Entrance Assessment',
-      description: 'Simple assessment to understand your child\'s readiness'
-    },
-    {
-      step: 4,
-      title: 'Interview',
-      description: 'Meet with parents and child for better understanding'
-    },
-    {
-      step: 5,
-      title: 'Admission Confirmation',
-      description: 'Receive admission letter and fee payment details'
+    { step: 1, title: 'Inquiry', desc: 'Submit an online form or visit our Madanapalle campus.' },
+    { step: 2, title: 'Interaction', desc: 'A friendly session to understand the child’s potential.' },
+    { step: 3, title: 'Verification', desc: 'Submission of all necessary academic and identity documents.' },
+    { step: 4, title: 'Confirmation', desc: 'Receive the admission offer letter and orientation details.' }
+  ];
+
+  // Primary animation for individual items
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" } 
     }
-  ]
+  };
+
+  // Container to trigger children one by one
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2, // Delay between each item
+        delayChildren: 0.1 
+      }
+    }
+  };
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-accent to-primary text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+    <main className="min-h-screen bg-[#fafaf9] overflow-hidden text-lg md:text-xl leading-relaxed pb-20">
+      
+      {/* 1. HERO SECTION */}
+      <section className="relative bg-[#064E3B] text-white py-32 border-b-8 border-[#D4AF37]">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.3 }}
+            variants={itemVariants}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Admissions Open 2026-2027</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-              Join the best school in Madanapalle • Limited seats available
+            <span className="inline-block px-6 py-2 rounded-full bg-[#D4AF37] text-[#064E3B] mb-8 text-sm font-black uppercase tracking-[0.25em] shadow-xl">
+              Admissions 2026-2027
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter leading-[1.1]">
+              A Legacy of <span className="text-[#D4AF37]">Excellence</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-emerald-100/70 max-w-3xl mx-auto mb-12 font-light">
+              Nurturing minds in Madanapalle with a world-class curriculum.
             </p>
-            <motion.a
-              href="#apply"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
-            >
-              Apply Now
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <a href="#apply" className="bg-[#D4AF37] text-[#064E3B] px-12 py-5 rounded-lg font-black text-xl shadow-2xl transition-all uppercase tracking-widest hover:bg-white">
+                Apply Online
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Eligibility Criteria */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+      {/* 2. ELIGIBILITY TABLE (Displays rows one by one) */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={itemVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Eligibility Criteria
-            </h2>
-            <p className="text-lg text-gray-600">
-              Age requirements for admission to different classes
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#064E3B] mb-6 uppercase tracking-tighter">Entry Requirements</h2>
+            <div className="h-2 w-32 bg-[#D4AF37] mx-auto rounded-full" />
           </motion.div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
-              <thead className="bg-primary text-white">
+          <motion.div 
+            className="overflow-hidden rounded-2xl shadow-2xl border border-emerald-50"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
+            <table className="w-full text-left">
+              <thead className="bg-[#064E3B] text-[#D4AF37]">
                 <tr>
-                  <th className="px-6 py-4 text-left">Class</th>
-                  <th className="px-6 py-4 text-left">Age Range</th>
-                  <th className="px-6 py-4 text-left">Requirements</th>
+                  <th className="px-8 py-6 font-bold uppercase tracking-widest text-xs">Level</th>
+                  <th className="px-8 py-6 font-bold uppercase tracking-widest text-xs">Age Range</th>
+                  <th className="px-8 py-6 font-bold uppercase tracking-widest text-xs">Focus Area</th>
                 </tr>
               </thead>
-              <tbody>
-                {eligibility.map((item, index) => (
-                  <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
-                    <td className="px-6 py-4 font-semibold text-primary">{item.class}</td>
-                    <td className="px-6 py-4">{item.age}</td>
-                    <td className="px-6 py-4">{item.requirements}</td>
-                  </tr>
+              <tbody className="divide-y divide-emerald-50">
+                {eligibility.map((row, i) => (
+                  <motion.tr key={i} variants={itemVariants} className="hover:bg-amber-50/50 transition-colors">
+                    <td className="px-8 py-6 font-black text-[#064E3B] text-xl">{row.class}</td>
+                    <td className="px-8 py-6 text-slate-700 font-bold">{row.age}</td>
+                    <td className="px-8 py-6 text-slate-400 italic text-base">{row.focus}</td>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Required Documents */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+      {/* 3. DOCUMENTS & PATH (Displays cards and steps one by one) */}
+      <section className="py-24 bg-[#f3f4f1]">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+          
+          {/* Documents Column */}
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.2 }} 
+            variants={containerVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h3 className="text-3xl font-bold text-[#064E3B] mb-10 flex items-center">
+              <span className="w-3 h-10 bg-[#D4AF37] mr-4 inline-block rounded-sm" />
               Required Documents
-            </h2>
-            <p className="text-lg text-gray-600">
-              Please prepare these documents before applying
-            </p>
+            </h3>
+            <div className="space-y-4">
+              {documents.map((doc, i) => (
+                <motion.div 
+                  key={i} 
+                  variants={itemVariants}
+                  className="flex items-center p-6 bg-white rounded-xl shadow-md border-l-8 border-[#D4AF37] hover:translate-x-2 transition-transform"
+                >
+                  <span className="text-[#064E3B] font-black mr-4 text-xl">✓</span>
+                  <span className="text-slate-800 font-bold uppercase tracking-tight text-base">{doc}</span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {documents.map((document, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="bg-white rounded-lg p-4 shadow-md flex items-center"
-              >
-                <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
-                  ✓
-                </div>
-                <span className="text-gray-700">{document}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Admission Process */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+          {/* Path Column */}
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.2 }} 
+            variants={containerVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Admission Process
-            </h2>
-            <p className="text-lg text-gray-600">
-              Simple 5-step process to join our school family
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex items-start mb-8"
-              >
-                <div className="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-6">
-                  {step.step}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-primary mb-2">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Apply Now CTA */}
-      <section id="apply" className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Join Our Family?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Take the first step towards your child's bright future at the best school in Madanapalle
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://forms.gle/your-admission-form-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
-              >
-                Apply Online Now
-              </a>
-              <a
-                href="tel:+919876543210"
-                className="inline-block bg-accent text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-lg"
-              >
-                Call for Admission
-              </a>
+            <h3 className="text-3xl font-bold text-[#064E3B] mb-10">The Enrollment Path</h3>
+            <div className="space-y-12 border-l-4 border-[#D4AF37]/30 ml-8 pl-12 relative">
+              {steps.map((s, i) => (
+                <motion.div key={i} variants={itemVariants} className="relative group">
+                  <div className="absolute -left-[68px] top-0 w-10 h-10 rounded-full bg-[#064E3B] border-4 border-[#D4AF37] shadow-lg flex items-center justify-center text-sm font-black text-[#D4AF37] group-hover:scale-110 transition-transform">
+                    {i + 1}
+                  </div>
+                  <h4 className="text-2xl font-black text-[#064E3B] mb-3 uppercase tracking-tighter">{s.title}</h4>
+                  <p className="text-slate-600 text-lg leading-relaxed">{s.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* SEO Text */}
-      <section className="py-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-gray-600">
-            <p className="text-sm">
-              Best school in Madanapalle admissions • State board school Madanapalle admission •
-              LKG to 10th class admission • Andhra Pradesh State Board school admission •
-              School admission Madanapalle • Online admission form • School fees •
-              Admission process • Documents required for school admission
-            </p>
+      {/* 4. FINAL CTA */}
+      <section id="apply" className="px-6 py-20 bg-white">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={itemVariants}
+          className="max-w-6xl mx-auto bg-[#064E3B] rounded-[50px] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between shadow-[0_30px_60px_rgba(6,78,59,0.3)] border-b-8 border-[#D4AF37]"
+        >
+          <div className="text-center md:text-left mb-8 md:mb-0">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight uppercase">Begin Their Journey</h2>
+            <p className="text-emerald-100/60 text-lg md:text-xl font-light italic">Admissions now open for all grades.</p>
           </div>
-        </div>
+          <div className="flex flex-col items-center gap-4">
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-[#D4AF37] text-[#064E3B] px-10 py-4 rounded-xl font-black text-lg shadow-xl uppercase tracking-widest hover:bg-white transition-colors">
+              Registration Form
+            </motion.button>
+          </div>
+        </motion.div>
       </section>
+
     </main>
-  )
+  );
 }
 
-export default Admissions
+export default Admissions;
