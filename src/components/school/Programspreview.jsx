@@ -65,7 +65,7 @@ export default function FacilitiesPreview() {
             whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
             className="text-(--color-secondary) text-xs font-black uppercase mb-4"
           >
-            Why Gynodaya
+            Why Gnanodaya
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}

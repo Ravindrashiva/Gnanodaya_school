@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 function WhatsAppButton() {
   return (
     <motion.a
-      href="https://wa.me/919876543210?text=Hi%20I%20want%20to%20know%20about%20admissions%20at%20Gynodaya%20School"
+      // Updated "Gynodaya" to "Gnanodaya" in the encoded URL string
+      href="https://wa.me/9440893699?text=Hi%20I%20want%20to%20know%20about%20admissions%20at%20Gnanodaya%20School"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-30 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300"

@@ -13,7 +13,7 @@ export const school = {
   about: {
     headline: 'Who We Are',
     description:
-      'Gynodaya School is like a big, loving family where every child feels special! From tiny tots in LKG to confident teenagers in 10th class, we help kids discover their talents, make wonderful friends, and learn amazing things every day.',
+      'Gnanodaya School is like a big, loving family where every child feels special! From tiny tots in LKG to confident teenagers in 10th class, we help kids discover their talents, make wonderful friends, and learn amazing things every day.',
     mission: 'We believe every child is a star waiting to shine! Our mission is to create happy learners who love school, respect others, and dream big dreams. We teach with love, play with joy, and grow together as a family.',
     management: 'Our caring leaders work hard to make school the best place ever. They listen to teachers, parents, and students to create a school where everyone feels safe, happy, and excited to learn!',
   },
@@ -172,9 +172,9 @@ export const school = {
     },
   ],
   contact: {
-    address: 'Gynodaya School, Madanapalle, Andhra Pradesh, India',
-    phone: '+91 98765 43210',
-    email: 'admissions@gynodayaschool.edu.in',
+    address: 'Gnanodaya School, Madanapalle, Andhra Pradesh, India',
+    phone: '91 9440893699',
+    email: 'gnanodayaschool@gmail.com',
   },
   footerLinks: [
     { label: 'Home', href: '#home' },

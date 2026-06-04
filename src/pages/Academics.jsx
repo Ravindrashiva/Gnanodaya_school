@@ -13,11 +13,19 @@ import {
   Zap,
   CheckCircle2,
   Monitor,
-  Flame
+  Flame,
+  Baby // Added for Foundation levels
 } from 'lucide-react';
 
 const AcademicsPage = () => {
   const gradeLevels = [
+    {
+      title: "Foundation",
+      grades: "LKG - UKG",
+      focus: "Early Years Growth",
+      description: "Nurturing curiosity through play-based learning, sensory activities, and social-emotional development.",
+      icon: <Baby className="w-8 h-8 text-[#0A4D2E]" />,
+    },
     {
       title: "Primary School",
       grades: "GRADES I - V",
@@ -36,15 +44,8 @@ const AcademicsPage = () => {
       title: "High School",
       grades: "GRADES IX - X",
       focus: "Excellence & Boards",
-      description: "Rigorous academic preparation combined with advanced competitive exam coaching.",
+      description: "Rigorous academic preparation combined with advanced competitive exam coaching and board readiness.",
       icon: <GraduationCap className="w-8 h-8 text-[#0A4D2E]" />,
-    },
-    {
-      title: "Higher Secondary",
-      grades: "GRADES XI - XII",
-      focus: "Specialization",
-      description: "Stream-specific expertise (MPC/BiPC) designed to bridge the gap between school and university.",
-      icon: <Rocket className="w-8 h-8 text-[#0A4D2E]" />,
     }
   ];
 
@@ -70,7 +71,7 @@ const AcademicsPage = () => {
               ELITE <span className="text-[#FFC107]">CURRICULUM</span>
             </h1>
             <p className="text-white/70 text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto italic">
-              "A comprehensive educational journey from foundational literacy to elite entrance excellence."
+              "A comprehensive educational journey from foundational play to high-performance academic excellence."
             </p>
           </motion.div>
         </div>
@@ -110,7 +111,6 @@ const AcademicsPage = () => {
 
       {/* --- ACADEMIC HIGHLIGHTS (DARK BENTO GLASS) --- */}
       <section className="bg-[#0A4D2E] py-32 px-6 rounded-t-[5rem] relative overflow-hidden">
-        {/* Glow Effects */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFC107]/10 blur-[120px] rounded-full" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -125,7 +125,7 @@ const AcademicsPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6">
             
-            {/* IIT-JEE MAINS (FEATURED BENTO) */}
+            {/* IIT-JEE FOUNDATION (RE-LABELED FROM MAINS) */}
             <motion.div 
               whileHover={{ y: -5 }}
               className="md:col-span-6 lg:col-span-8 bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 p-12 rounded-[4rem] backdrop-blur-md relative overflow-hidden group"
@@ -140,13 +140,13 @@ const AcademicsPage = () => {
                 <div>
                   <div className="flex items-center gap-3 mb-4">
                     <span className="bg-[#FFC107] text-[#0A4D2E] text-[10px] font-black px-3 py-1 rounded-full tracking-widest uppercase">Elite Level</span>
-                    <h4 className="text-4xl font-black text-white uppercase tracking-tighter">IIT-JEE Mains</h4>
+                    <h4 className="text-4xl font-black text-white uppercase tracking-tighter">Foundation Excellence</h4>
                   </div>
                   <p className="text-white/70 text-lg font-medium leading-relaxed mb-8 max-w-2xl">
                     Our flagship program integrates rigorous mathematical logic with advanced competitive problem-solving. We don't just teach subjects; we build analytical mindsets.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {['Daily Practice Papers (DPP)', 'All-India Mock Series', 'Doubt Clearing Units', 'Personal Mentorship'].map((t, i) => (
+                    {['Critical Thinking Units', 'Competitive Mock Series', 'Doubt Clearing Units', 'Personal Mentorship'].map((t, i) => (
                       <div key={i} className="flex items-center gap-3 text-xs font-bold text-white/90">
                         <CheckCircle2 className="w-5 h-5 text-[#FFC107]" /> {t}
                       </div>
@@ -156,16 +156,16 @@ const AcademicsPage = () => {
               </div>
             </motion.div>
 
-            {/* NEET (SQUARE BENTO) */}
+            {/* NEET ORIENTATION */}
             <div className="md:col-span-3 lg:col-span-4 bg-white/5 border border-white/10 p-10 rounded-[4rem] group hover:bg-white/10 transition-all">
               <Atom className="w-12 h-12 text-emerald-400 mb-8 group-hover:rotate-180 transition-transform duration-1000" />
-              <h4 className="text-2xl font-black text-white mb-4 uppercase tracking-tight">NEET Focus</h4>
+              <h4 className="text-2xl font-black text-white mb-4 uppercase tracking-tight">NEET Prep</h4>
               <p className="text-white/50 text-sm font-medium leading-relaxed">
-                Dedicated orientation for medical aspirants with a focus on deep biological conceptualization and precision physics.
+                Dedicated orientation for medical aspirants with a focus on deep biological conceptualization and precision science.
               </p>
             </div>
 
-            {/* DIGITAL LABS (SQUARE BENTO) */}
+            {/* DIGITAL LABS */}
             <div className="md:col-span-3 lg:col-span-4 bg-white/5 border border-white/10 p-10 rounded-[4rem] group hover:bg-white/10 transition-all">
               <Monitor className="w-12 h-12 text-blue-400 mb-8 group-hover:scale-110 transition-transform" />
               <h4 className="text-2xl font-black text-white mb-4 uppercase tracking-tight">Digital Labs</h4>
@@ -174,7 +174,7 @@ const AcademicsPage = () => {
               </p>
             </div>
 
-            {/* FUTURE SKILLS (WIDE BENTO) */}
+            {/* FUTURE SKILLS */}
             <div className="md:col-span-6 lg:col-span-8 bg-white p-12 rounded-[4rem] flex flex-col md:flex-row items-center gap-10 shadow-2xl">
               <div className="w-24 h-24 bg-[#0A4D2E]/5 rounded-[2.5rem] flex items-center justify-center shrink-0">
                 <Cpu className="w-12 h-12 text-[#FFC107]" />

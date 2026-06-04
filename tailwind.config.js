@@ -1,10 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+// tailwind.config.js
+module.exports = {
   theme: {
     extend: {
-      // Colors are now primarily managed in index.css @theme
-    },
-  },
-  plugins: [],
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      animation: {
+        'marquee-fast': 'marquee 25s linear infinite',
+      }
+    }
+  }
 }
