@@ -73,7 +73,7 @@ const facilities = [
     icon: Dumbbell,
     title: 'Playground & Sports',
     badge: 'Sports & Fitness',
-    desc: 'Expansive playgrounds and facilities for cricket, volleyball, kabaddi, and athletics — building physical fitness, discipline, and team spirit.',
+    desc: 'Expansive playgrounds and facilities for cricket, volleyball, kabaddi, and athletics     — building physical fitness, discipline, and team spirit.',
     color: 'from-[#0A4D2E] to-[#063d22]',
   },
 ];
