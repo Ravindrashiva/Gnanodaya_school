@@ -37,10 +37,10 @@ import sportsImg5 from "../assets/Sports5.png";
 
 import campusImg0 from "../assets/Campus.png";
 import campusImg1 from "../assets/Campus1.png";
-import campusImg2 from "../assets/campus2.png";
-import campusImg3 from "../assets/campus3.png";
-import campusImg4 from "../assets/campus4.png";
-import campusImg5 from "../assets/campus5.png";
+import campusImg2 from "../assets/Campus2.png";
+import campusImg3 from "../assets/Campus3.png";
+import campusImg4 from "../assets/Campus4.png";
+import campusImg5 from "../assets/Campus5.png";
 
 import eventImg0 from "../assets/Event.png";
 import eventImg1 from "../assets/Event1.png";
@@ -48,9 +48,9 @@ import eventImg2 from "../assets/Event2.png";
 import eventImg3 from "../assets/Event3.png";
 import eventImg4 from "../assets/Event4.png";
 
-import tripImg0 from "../assets/Trip.png";
-import tripImg1 from "../assets/Trip1.png";
-import tripImg2 from "../assets/Trip2.png";
+import tripImg0 from "../assets/trip.png";
+import tripImg1 from "../assets/trip1.png";
+import tripImg2 from "../assets/trip2.png";
 
 import highlight from "../assets/highlight.png";
 import highlight1 from "../assets/highlight1.png";
