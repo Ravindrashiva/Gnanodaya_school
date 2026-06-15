@@ -22,13 +22,10 @@ import History from './components/about/History';
 import PrincipalMessage from './components/about/Principal';
 import Infrastructure from './components/about/Infrastructure';
 
-import Curriculum from './components/academics/Curriculum';
-import AcademicCalendar from './components/academics/Calendar';
-import Achievements from './components/academics/Achievements';
+import Curriculum from './components/Academics/curriculum';
+import AcademicCalendar from './components/Academics/calendar';
+import Achievements from './components/Academics/achievements';
 
-// import Curriculum from './components/academics/Curriculum';
-// import AcademicCalendar from './components/academics/Calendar';
-// import Achievements from './components/academics/Achievements';
 
 
 // Scroll to Top Helper (Ensures smooth navigation between long pages)
